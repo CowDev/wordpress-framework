@@ -1,0 +1,24 @@
+# Git specific
+.*
+!/.gitignore
+
+# Plugin / Theme files
+public_html/content/plugins/*
+!public_html/content/plugins/.gitkeep
+public_html/content/mu-plugins/*/
+!public_html/content/mu-plugins/composer-updater
+public_html/content/upgrade
+public_html/content/uploads/*
+!public_html/content/uploads/.gitkeep
+
+# WordPress
+public_html/.htaccess
+public_html/wp
+
+# Config files
+config/environment/*
+!config/environment/*.sample.php
+
+# Composer
+vendor/*
+!vendor/.gitkeep

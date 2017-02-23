@@ -70,10 +70,11 @@ define( 'WP_HOME', '//' . $_SERVER['HTTP_HOST'] );
 define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );
 
-// ================================
+// ======================================================
 // Language
 // Leave blank for American English
-// ================================
+// WordPress sets this through database in newer versions
+// ======================================================
 define( 'WPLANG', '' );
 
 // =========================

@@ -20,12 +20,18 @@ When in this folder, do `composer install`. Use `composer update` to update plug
 place a config file in `config/environment`. Use one of the sample files as an example for the appropriate environment. Remove .sample from the file name.
 
 ## Contents
-This is a two way system. First, there is a composer system, unstalling and maintaining WordPress and a couple of plugins.
-WordPress has been set up as a separated app, dividing 
+This is a two way system. First, there is a composer system, installing and maintaining WordPress and a couple of plugins.
+WordPress has been set up as a separated app, dividing the WordPress system from the content.
+
 The included plugins by default are:
 - *[Sucuri WordPress security:][1]* This plugin hasn't been tested yet in the current system, and might not work due to the way WordPress is setup.
 - *[WordPress SEO by Yoast:][2]* A plugin used for SEO.
 - *[Roots\' WP Password bcrypt:][3]* A plugin used to change the WordPress password functionality, from MD5 to the new `password_hash` and `password_verify` functionality, introduced in PHP v5.5
+
+## Updating
+The system can be updated in two different ways. Through composer, which can be run through a cronjob daily, using `composer update`, or using the WordPress auto updater.
+This is default, and is set in the `global-config.php` file. Check for the `WP_AUTO_UPDATE_CORE` variable there, to turn it off. Updates are interchangeable. WordPress will only update when visited by default.
+Updating through cron might be more consistent.
 
 ## Other remarks
 Due to the setup of this theme, you're advised to force the URL on each environment (through .htaccess), most importantly on the live site.

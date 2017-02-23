@@ -22,3 +22,6 @@ config/environment/*
 # Composer
 vendor/*
 !vendor/.gitkeep
+
+# C9 specific
+php.ini

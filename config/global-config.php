@@ -28,32 +28,27 @@ set_error_handler('cowdev_error_handler');
 // Load database info and local development parameters
 // ===================================================
 
-if ( file_exists( dirname( __FILE__ ) . '/environment/production-config.php' ) ) {
-    // ======================
-    // Production environment
-    // ======================
-    define( 'WP_LOCAL_DEV', false );
-    include( dirname( __FILE__ ) . '/environment/production-config.php' );
-    
-} else if ( file_exists( dirname( __FILE__ ) . '/environment/staging-config.php' ) ) {
-    // ===================
-    // Staging environment
-    // ===================
-    define( 'WP_LOCAL_DEV', true );
-    include( dirname( __FILE__ ) . '/environment/staging-config.php' );
-    
-} else if ( file_exists( dirname( __FILE__ ) . '/environment/local-config.php' ) ) {
+$serverurl = $_SERVER['HTTP_HOST'];
+if( strpos($serverurl, '.dev') !== false ) {
     // =================
     // Local environment
     // =================
     define( 'WP_LOCAL_DEV', true );
     include( dirname( __FILE__ ) . '/environment/local-config.php' );
     
+} elseif( strpos($serverurl, '.visualtest.nl') !== false || strpos($serverurl, '.testvoordeboeg.nl') !== false ) {
+    // ===================
+    // Staging environment
+    // ===================
+    define( 'WP_LOCAL_DEV', true );
+    include( dirname( __FILE__ ) . '/environment/staging-config.php' );
+    
 } else {
-    // ==============
-    // No config file
-    // ==============
-    die( 'No config file present. Please create one.' );
+    // ======================
+    // Production environment
+    // ======================
+    define( 'WP_LOCAL_DEV', false );
+    include( dirname( __FILE__ ) . '/environment/production-config.php' );
     
 }
 
@@ -85,10 +80,9 @@ define( 'WPLANG', '' );
 // =================================================================================
 // Or enable all automatic updates through WordPress ( if Composer isn't an option )
 // Use 'minor' for only minor updates, true for all, and false for none
+// Remove auto-update for plugins in the base-theme, if required.
 // =================================================================================
 define( 'WP_AUTO_UPDATE_CORE', true );
-add_filter( 'auto_update_plugin', '__return_true' );
-add_filter( 'auto_update_theme', '__return_true' );
 
 // =================================
 // Load WordPress Settings

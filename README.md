@@ -35,10 +35,20 @@ The included plugins by default are:
 - *[Roots\' WP Password bcrypt:][3]* A plugin used to change the WordPress password functionality, from MD5 to the new `password_hash` and `password_verify` functionality, introduced in PHP v5.5
 - *[WP Mandrill:][4]* An alternative to WP_Mail(). Not required, but recommended in most sites.
 
+### Basetheme
+There's a basetheme included. This can be used as parent-theme.
+The following libraries are included for use in the basetheme:
+
+- *[SASS Php compiler:][7]* A php compiler for SASS. This'll automatically compile and minify the SCSS of the theme.
+- *[Javascript/CSS minifier:][[8]* A javascript/CSS minifier, used to combine and minify the javascripts.
+
 ## Updating
 The system can be updated in two different ways. Through composer, which can be run through a cronjob daily, using `composer update`, or using the WordPress auto updater.
 This is default, and is set in the `global-config.php` file. Check for the `WP_AUTO_UPDATE_CORE` variable there, to turn it off. Updates are interchangeable. WordPress will only update when visited by default.
 Updating through cron might be more consistent.
+
+## Production
+Be sure to call `composer dump-autoload --optimize` when deploying a site for production.
 
 ## Other remarks
 Due to the setup of this theme, you're advised to force the URL on each environment (through .htaccess), most importantly on the live site.
@@ -51,3 +61,5 @@ This might cause issues if you don't force the same URL throughout the site.
 [4]: https://wordpress.org/plugins/wpmandrill/
 [5]: https://getcomposer.org/
 [6]: http://wp-cli.org/
+[7]: https://github.com/leafo/scssphp
+[8]: https://github.com/matthiasmullie/minify

@@ -3,13 +3,19 @@
 !/.gitignore
 
 # Plugin / Theme files
+## Plugins
 public_html/content/plugins/*
 !public_html/content/plugins/.gitkeep
+## Must-use plugins
 public_html/content/mu-plugins/*/
-!public_html/content/mu-plugins/composer-updater
+## Upgrades & uploads
 public_html/content/upgrade
 public_html/content/uploads/*
 !public_html/content/uploads/.gitkeep
+## Themes
+public_html/content/themes/*/
+!public_html/content/themes/base
+public_html/content/themese/base/lib
 
 # WordPress
 public_html/.htaccess

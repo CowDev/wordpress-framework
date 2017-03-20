@@ -40,7 +40,7 @@ There's a basetheme included. This can be used as parent-theme.
 The following libraries are included for use in the basetheme:
 
 - *[SASS Php compiler:][7]* A php compiler for SASS. This'll automatically compile and minify the SCSS of the theme.
-- *[Javascript/CSS minifier:][[8]* A javascript/CSS minifier, used to combine and minify the javascripts.
+- *[Javascript/CSS minifier:][8]* A javascript/CSS minifier, used to combine and minify the javascripts.
 
 ## Updating
 The system can be updated in two different ways. Through composer, which can be run through a cronjob daily, using `composer update`, or using the WordPress auto updater.

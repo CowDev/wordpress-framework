@@ -36,9 +36,9 @@
     "scripts": {
         "post-install-cmd": [
             "cp public_html/wp/index.php public_html/index.php",
-            "sed -i \"s/\\/wp-blog-header/\\/wp\\/wp-blog-header/g\" public_html/index.php",
+            "sed -i.bak 's~wp-blog-header~wp/wp-blog-header~g' public_html/index.php",
             "rsync -a public_html/wp/wp-content/ public_html/content/",
-            "rm -rf public_html/wp/wp-content public_html/wp/readme.html public_html/content/themes/twenty* public_html/content/plugins/hello.php",
+            "rm -rf public_html/wp/wp-content public_html/wp/readme.html public_html/content/themes/twenty* public_html/content/plugins/hello.php public_html/*.bak",
             "composer update"
         ]
     }

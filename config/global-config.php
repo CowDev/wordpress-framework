@@ -1,4 +1,9 @@
 <?php
+// =================================
+// Set the current url in a variable
+// =================================
+$serverurl = $_SERVER['HTTP_HOST'];
+
 // ====================================================================
 // E-mail errors to me ( prevent automatic updates from breaking site )
 // ====================================================================
@@ -10,25 +15,26 @@ function cowdev_error_handler($number, $message, $file, $line, $vars) {
          
     $email .= "<pre>" . print_r($vars, 1) . "</pre>";
      
-    $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    $headers = 'Content-type: text/html; charset=iso-8859-1';
     
     // The code below ensures that we only "die" if the error was more than
     // just a NOTICE. 
     if ( ($number !== E_NOTICE) && ($number < 2048) ) {
-        die("There was an error. Please try again later.");
         // Email the error to me
         error_log($email, 1, 'sander@cowdev.com', $headers);
+    	// Don't die of we're in dev
+	    die("There was an error. Please try again later.");
     }
 }
 
-// We should use our custom function to handle errors.
-set_error_handler('cowdev_error_handler');
+// We should use our custom function to handle errors, if we're not in dev
+if( strpos($serverurl, '.dev') === false ){
+	set_error_handler('cowdev_error_handler');
+}
 
 // ===================================================
 // Load database info and local development parameters
 // ===================================================
-
-$serverurl = $_SERVER['HTTP_HOST'];
 if( strpos($serverurl, '.dev') !== false ) {
     // =================
     // Local environment

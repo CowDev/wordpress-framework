@@ -50,6 +50,11 @@ Updating through cron might be more consistent.
 ## Production
 Be sure to call `composer dump-autoload --optimize` when deploying a site for production.
 
+## Customizing
+In case you want to use this theme as a company, be sure to change the mail address in *config/global-config.php*, 
+change the backend styling in the base theme (folder *admin*), 
+and change the footer message in *inc/_wp-backend.php* > *cowdev_footer()*.
+
 ## Other remarks
 Due to the setup of this theme, you're advised to force the URL on each environment (through .htaccess), most importantly on the live site.
 The WordPress content and HOME_URL will be set in the global config (config/global-config.php) with the server address.

@@ -1,0 +1,21 @@
+
+// Mixins + grid + reset
+@import 'base/_grid.scss';
+@import 'base/_mixins.scss';
+@import 'base/_reset.scss';
+
+// Theme specific includes
+@import 'layout/_animation.scss';
+@import 'layout/_variables.scss';
+@import 'layout/_fonts.scss';
+@import 'layout/_buttons.scss';
+@import 'layout/_forms.scss';
+@import 'layout/_parts.scss';
+
+// Section specific
+@import 'sections/_header.scss';
+@import 'sections/_nav.scss';
+@import 'sections/_sections.scss';
+@import 'sections/_footer.scss';
+
+html,body {margin:0;padding:0;}

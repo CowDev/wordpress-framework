@@ -21,7 +21,7 @@ The following programs are required to be installed:
 ## Installation
 To finish installation, do the following steps:
 ### Composer installation
-When in this folder, do `composer install`. Use `composer update` to update plugins etc.
+When in this folder, do `composer install`. Use `composer update` to update plugins etc. ( use the `--no-dev` flag for production )
 ### WordPress installation
 place a config file in `config/environment`. Use one of the sample files as an example for the appropriate environment. Remove .sample from the file name.
 

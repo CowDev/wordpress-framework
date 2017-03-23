@@ -49,20 +49,20 @@ function compile_css_js(){
 	// compile and minify CSS
 	$frontCSS   = TEMPLATEPATH . '/stylesheets/style.css';
 	$minifyCSS  = new Minify\CSS( $frontCSS );
-	// GZIP output the file
+	// Minify output the file
 	$minifyCSS->minify( $frontCSS );
 
 	// compile and minify backend CSS
 	$backCSS    = TEMPLATEPATH . '/admin/backend-styles.css';
 	$minifyBCSS = new Minify\CSS( $backCSS );
-	// GZIP output the file
+	// Minify output the file
 	$minifyBCSS->minify( $backCSS );
 
 	// compile and minify JS
 	$plugins    = TEMPLATEPATH . '/js/plugins.js';
 	$scripts    = TEMPLATEPATH . '/js/scripts.js';
 	$minifyJS   = new Minify\JS( $plugins, $scripts );
-	// GZIP output the file
+	// Minify output the file
 	$targetJS	= TEMPLATEPATH . '/js/scripts-min.js';
 	$minifyJS->minify( $targetJS );
 

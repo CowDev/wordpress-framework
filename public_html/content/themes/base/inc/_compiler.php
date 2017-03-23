@@ -9,13 +9,21 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 use Leafo\ScssPhp\Compiler;
 
 function compile_sass(){
+	
+	// Set up array path
+	$paths	= array(
+		TEMPLATEPATH . '/stylesheets/sass/',
+		TEMPLATEPATH . '/stylesheets/sass/base/',
+		TEMPLATEPATH . '/stylesheets/sass/layouts/',
+		TEMPLATEPATH . '/stylesheets/sass/sections/'
+	);
 
 	// Load and set compiler options
 	$scss = new Compiler();
-	$scss->setImportPaths( TEMPLATEPATH . '/stylesheets/' );
+	$scss->setImportPaths( $paths );
 
 	// Get styles
-	$theme_styles       = file_get_contents( TEMPLATEPATH . '/stylesheets/style.scss' );
+	$theme_styles       = file_get_contents( TEMPLATEPATH . '/stylesheets/sass/style.scss' );
 	$backend_styles     = file_get_contents( TEMPLATEPATH . '/admin/backend-styles.scss' );
 
 	// Compile styles

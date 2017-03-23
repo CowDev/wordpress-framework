@@ -2,7 +2,7 @@
 .*
 !/.gitignore
 
-# Plugin / Theme files
+# WP Plugin / Theme files
 ## Plugins
 public_html/content/plugins/*
 !public_html/content/plugins/.gitkeep
@@ -30,5 +30,5 @@ config/environment/*
 vendor/*
 !vendor/.gitkeep
 
-# C9 specific
+# C9.io specific
 php.ini

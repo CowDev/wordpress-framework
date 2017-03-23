@@ -42,6 +42,11 @@ The following libraries are included for use in the basetheme:
 - *[SASS Php compiler:][7]* A php compiler for SASS. This'll automatically compile and minify the SCSS of the theme.
 - *[Javascript/CSS minifier:][8]* A javascript/CSS minifier, used to combine and minify the javascripts.
 
+#### Customizing
+In case you want to use this theme as a company, be sure to change the mail address in *config/global-config.php*, 
+change the backend styling in the base theme (folder *admin*), 
+and change the footer message in *inc/_wp-backend.php* > *cowdev_footer()*.
+
 ## Updating
 The system can be updated in two different ways. Through composer, which can be run through a cronjob daily, using `composer update`, or using the WordPress auto updater.
 This is default, and is set in the `global-config.php` file. Check for the `WP_AUTO_UPDATE_CORE` variable there, to turn it off. Updates are interchangeable. WordPress will only update when visited by default.
@@ -49,11 +54,6 @@ Updating through cron might be more consistent.
 
 ## Production
 Be sure to call `composer dump-autoload --optimize` when deploying a site for production.
-
-## Customizing
-In case you want to use this theme as a company, be sure to change the mail address in *config/global-config.php*, 
-change the backend styling in the base theme (folder *admin*), 
-and change the footer message in *inc/_wp-backend.php* > *cowdev_footer()*.
 
 ## Other remarks
 Due to the setup of this theme, you're advised to force the URL on each environment (through .htaccess), most importantly on the live site.

@@ -61,7 +61,8 @@ function compile_css_js(){
 	// compile and minify JS
 	$plugins    = TEMPLATEPATH . '/js/plugins.js';
 	$scripts    = TEMPLATEPATH . '/js/scripts.js';
-	$minifyJS   = new Minify\JS( $plugins, $scripts );
+	$minifyJS   = new Minify\JS( $plugins );
+	$minifyJS->add( $scripts );
 	// Minify output the file
 	$targetJS	= TEMPLATEPATH . '/js/scripts-min.js';
 	$minifyJS->minify( $targetJS );

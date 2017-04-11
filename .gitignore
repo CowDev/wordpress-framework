@@ -25,6 +25,7 @@ public_html/index.php
 # Config files
 config/environment/*
 !config/environment/*.sample.php
+!/.env.example
 
 # Composer
 vendor/*

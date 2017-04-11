@@ -34,6 +34,8 @@ The included plugins by default are:
 - *[WordPress SEO by Yoast:][2]* A plugin used for SEO.
 - *[Roots\' WP Password bcrypt:][3]* A plugin used to change the WordPress password functionality, from MD5 to the new `password_hash` and `password_verify` functionality, introduced in PHP v5.5
 - *[WP Mandrill:][4]* An alternative to WP_Mail(). Not required, but recommended in most sites.
+- *[PHP Dotenv:][9]* A dotenv plugin for storing sensitive environment variables.
+- *[ENV variable converter:][10]* A plugin to convert variables to simple types.
 
 ### Basetheme
 There's a basetheme included. This can be used as parent-theme.
@@ -49,7 +51,7 @@ and change the footer message in *inc/_wp-backend.php* > *cowdev_footer()*.
 
 ## Updating
 The system can be updated in two different ways. Through composer, which can be run through a cronjob daily, using `composer update`, or using the WordPress auto updater.
-This is default, and is set in the `global-config.php` file. Check for the `WP_AUTO_UPDATE_CORE` variable there, to turn it off. Updates are interchangeable. WordPress will only update when visited by default.
+This is default, and is set in the `global-config.php` file. Check for the `WP_AUTO_UPDATE_CORE` variable in the .env file, to turn it off. Updates are interchangeable. WordPress will only update when visited by default.
 Updating through cron might be more consistent.
 
 ## Production
@@ -68,3 +70,5 @@ This might cause issues if you don't force the same URL throughout the site.
 [6]: http://wp-cli.org/
 [7]: https://github.com/leafo/scssphp
 [8]: https://github.com/matthiasmullie/minify
+[9]: https://github.com/vlucas/phpdotenv
+[10]: https://github.com/oscarotero/env

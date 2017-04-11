@@ -22,6 +22,8 @@
         "wpackagist-plugin/wpmandrill": "*",
         "roots/wp-password-bcrypt": "*",
         "johnpbloch/wordpress": "*",
+        "vlucas/phpdotenv": "*",
+        "oscarotero/env": "*"
     },
     "require_dev": {
         "matthiasmullie/minify": "*",

@@ -1,12 +1,25 @@
 <?php
-// =================================
-// Set the current url in a variable
-// =================================
-$serverurl = $_SERVER['HTTP_HOST'];
+// ========================
+// Initiate and load dotenv
+// ========================
+$root_dir   = dirname( __DIR__ );
+$web_dir    = $root_dir . '/public_html';
 
-// ====================================================================
-// E-mail errors to me ( prevent automatic updates from breaking site )
-// ====================================================================
+Env::init();
+$dotenv     = new Dotenv\Dotenv( $root_dir );
+if( file_exists( $root_dir . '/.env' ) ){
+    $dotenv->load();
+    $dotenv->required( [ 'DB_NAME', 'DB_USER', 'DB_PASSWORD', 'WP_HOME', 'WP_SITEURL' ] );
+}
+
+// ================
+// Define variables
+// ================
+define( 'WP_ENV', env( 'WP_ENV' ) ?: 'production' );
+
+// ==================================================================
+// E-mail errors to me ( catch automatic updates when breaking site )
+// ==================================================================
 function cowdev_error_handler($number, $message, $file, $line, $vars) {
     $email = "
         <p>An error ($number) occurred on line 
@@ -28,42 +41,25 @@ function cowdev_error_handler($number, $message, $file, $line, $vars) {
 }
 
 // We should use our custom function to handle errors, if we're not in dev
-if( strpos($serverurl, '.dev') === false ){
+if( WP_ENV == 'development' ){
 	set_error_handler('cowdev_error_handler');
 }
 
 // ===================================================
 // Load database info and local development parameters
 // ===================================================
-if( strpos($serverurl, '.dev') !== false ) {
-    // =================
-    // Local environment
-    // =================
-    define( 'WP_LOCAL_DEV', true );
-    include( dirname( __FILE__ ) . '/environment/local-config.php' );
-    
-} elseif( strpos($serverurl, '.visualtest.nl') !== false || strpos($serverurl, '.testvoordeboeg.nl') !== false ) {
-    // ===================
-    // Staging environment
-    // ===================
-    define( 'WP_LOCAL_DEV', true );
-    include( dirname( __FILE__ ) . '/environment/staging-config.php' );
-    
-} else {
-    // ======================
-    // Production environment
-    // ======================
-    define( 'WP_LOCAL_DEV', false );
-    include( dirname( __FILE__ ) . '/environment/production-config.php' );
-    
+$config_file    = __DIR__ . '/environment/' . WP_ENV . '-config.php';
+
+if( file_exists( $config_file ) ){
+    require_once $config_file;
 }
 
 // ===============================
 // Custom Content Directory & Home
 // ===============================
-define( 'WP_CONTENT_DIR', dirname( __DIR__ ) . '/public_html/content' );
-define( 'WP_CONTENT_URL', '//' . $_SERVER['HTTP_HOST'] . '/content' );
-define( 'WP_HOME', '//' . $_SERVER['HTTP_HOST'] );
+define( 'WP_CONTENT_DIR',   $web_dir . '/content' );
+define( 'WP_CONTENT_URL',   WP_HOME . '/content' );
+define( 'WP_HOME',          WP_HOME );
 
 // ================================================
 // You almost certainly do not want to change these
@@ -78,20 +74,45 @@ define( 'DB_COLLATE', '' );
 // ======================================================
 define( 'WPLANG', '' );
 
-// =========================
-// Disable automatic updates
-// =========================
-// define( 'AUTOMATIC_UPDATER_DISABLED', true );
+// =================
+// Database settings
+// =================
+define('DB_NAME',       env('DB_NAME'));
+define('DB_USER',       env('DB_USER'));
+define('DB_PASSWORD',   env('DB_PASSWORD'));
+define('DB_HOST',       env('DB_HOST') ?: 'localhost');
+define('DB_CHARSET',    'utf8mb4');
+define('DB_COLLATE',    '');
+$table_prefix  =        env('DB_PREFIX') ?: 'cd_';
+
+// ===================
+// Auth keys and Salts
+// ===================
+define('AUTH_KEY',          env('AUTH_KEY'));
+define('SECURE_AUTH_KEY',   env('SECURE_AUTH_KEY'));
+define('LOGGED_IN_KEY',     env('LOGGED_IN_KEY'));
+define('NONCE_KEY',         env('NONCE_KEY'));
+define('AUTH_SALT',         env('AUTH_SALT'));
+define('SECURE_AUTH_SALT',  env('SECURE_AUTH_SALT'));
+define('LOGGED_IN_SALT',    env('LOGGED_IN_SALT'));
+define('NONCE_SALT',        env('NONCE_SALT'));
 
 // =================================================================================
-// Or enable all automatic updates through WordPress ( if Composer isn't an option )
+// Set update methods. Disable all WordPress updates in favor of Composer
+// Also disable cron, in case you want to set it yourself, instead of at every visit
+// =================================================================================
+// WP UPDATE SETTINGS
+// Enable all automatic updates through WordPress ( if Composer isn't an option )
 // Use 'minor' for only minor updates, true for all, and false for none
 // Remove auto-update for plugins in the base-theme, if required.
 // =================================================================================
-define( 'WP_AUTO_UPDATE_CORE', true );
+define( 'WP_AUTO_UPDATE_CORE',          env('WP_AUTO_UPDATE_CORE') ?: false );
+define( 'DISABLE_WP_CRON',              env('DISABLE_WP_CRON') ?: false);
+define( 'AUTOMATIC_UPDATER_DISABLED',   env('AUTOMATIC_UPDATER_DISABLED') ?: false );
 
-// =================================
-// Load WordPress Settings
-// Always change prefix from default
-// =================================
-$table_prefix  = 'cd_';
+// ========================
+// Set environment variable
+// ========================
+if (!defined('ABSPATH')) {
+    define('ABSPATH', $web_dir . '/wp/');
+}

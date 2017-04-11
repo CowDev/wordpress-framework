@@ -57,9 +57,8 @@ Updating through cron might be more consistent.
 Be sure to call `composer dump-autoload --optimize` when deploying a site for production.
 
 ## Other remarks
-Due to the setup of this theme, you're advised to force the URL on each environment (through .htaccess), most importantly on the live site.
-The WordPress content and HOME_URL will be set in the global config (config/global-config.php) with the server address.
-This might cause issues if you don't force the same URL throughout the site.
+This installation has been partly based on the [Roots Bedrock][11] theme, and the tutorial by [Delicious Brains][12], fitted to my own needs.
+For your own installations, either of these might be a better fit.
 
 [1]: https://wordpress.org/plugins/wordpress-seo/
 [2]: https://wordpress.org/plugins/sucuri-scanner/
@@ -71,3 +70,5 @@ This might cause issues if you don't force the same URL throughout the site.
 [8]: https://github.com/matthiasmullie/minify
 [9]: https://github.com/vlucas/phpdotenv
 [10]: https://github.com/oscarotero/env
+[11]: https://roots.io/bedrock/
+[12]: https://deliciousbrains.com/storing-wordpress-in-git/

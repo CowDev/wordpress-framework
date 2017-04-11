@@ -45,8 +45,7 @@ The following libraries are included for use in the basetheme:
 - *[Javascript/CSS minifier:][8]* A javascript/CSS minifier, used to combine and minify the javascripts.
 
 #### Customizing
-In case you want to use this theme as a company, be sure to change the mail address in *config/global-config.php*, 
-change the backend styling in the base theme (folder *admin*), 
+In case you want to use this theme as a company, be sure to change the backend styling in the base theme (folder *admin*), 
 and change the footer message in *inc/_wp-backend.php* > *cowdev_footer()*.
 
 ## Updating

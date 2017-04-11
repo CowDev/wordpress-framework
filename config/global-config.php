@@ -34,14 +34,14 @@ function cowdev_error_handler($number, $message, $file, $line, $vars) {
     // just a NOTICE. 
     if ( ($number !== E_NOTICE) && ($number < 2048) ) {
         // Email the error to me
-        error_log($email, 1, 'sander@cowdev.com', $headers);
+        error_log($email, 1, env( 'SUPPORT_MAIL' ), $headers);
     	// Don't die of we're in dev
 	    die("There was an error. Please try again later.");
     }
 }
 
 // We should use our custom function to handle errors, if we're not in dev
-if( WP_ENV == 'development' ){
+if( WP_ENV == 'development' && env( 'SUPPORT_MAIL' ) ){
 	set_error_handler('cowdev_error_handler');
 }
 

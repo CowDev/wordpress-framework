@@ -15,7 +15,6 @@ public_html/content/uploads/*
 ## Themes
 public_html/content/themes/*/
 !public_html/content/themes/base
-public_html/content/themese/base/lib
 
 # WordPress
 public_html/.htaccess
@@ -23,8 +22,6 @@ public_html/wp
 public_html/index.php
 
 # Config files
-config/environment/*
-!config/environment/*.sample.php
 !/.env.example
 
 # Composer

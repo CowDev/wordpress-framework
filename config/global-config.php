@@ -58,14 +58,9 @@ if( file_exists( $config_file ) ){
 // Custom Content Directory & Home
 // ===============================
 define( 'WP_CONTENT_DIR',   $web_dir . '/content' );
-define( 'WP_CONTENT_URL',   WP_HOME . '/content' );
-define( 'WP_HOME',          WP_HOME );
-
-// ================================================
-// You almost certainly do not want to change these
-// ================================================
-define( 'DB_CHARSET', 'utf8' );
-define( 'DB_COLLATE', '' );
+define( 'WP_CONTENT_URL',   env( 'WP_HOME' ) . '/content' );
+define( 'WP_HOME',          env( 'WP_HOME' ) );
+define( 'WP_SITEURL',       env( 'WP_SITEURL' ) );
 
 // ======================================================
 // Language

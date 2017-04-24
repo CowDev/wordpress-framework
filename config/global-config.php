@@ -41,7 +41,7 @@ function cowdev_error_handler($number, $message, $file, $line, $vars) {
 }
 
 // We should use our custom function to handle errors, if we're not in dev
-if( WP_ENV == 'development' && env( 'SUPPORT_MAIL' ) ){
+if( WP_ENV != 'development' && env( 'SUPPORT_MAIL' ) ){
 	set_error_handler('cowdev_error_handler');
 }
 

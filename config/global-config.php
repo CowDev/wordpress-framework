@@ -32,7 +32,7 @@ function cowdev_error_handler($number, $message, $file, $line, $vars) {
     
     // The code below ensures that we only "die" if the error was more than
     // just a NOTICE. 
-    if ( ($number !== E_NOTICE) && ($number < 2048) ) {
+    if ( ($number !== E_NOTICE) && ($number < 2048) && error_reporting() != 0 ) {
         // Email the error to me
         error_log($email, 1, env( 'SUPPORT_MAIL' ), $headers);
     	// Don't die of we're in dev

@@ -27,16 +27,22 @@ function cowdev_error_handler($number, $message, $file, $line, $vars) {
         <p> $message </p>";
          
     $email .= "<pre>" . print_r($vars, 1) . "</pre>";
+    $email .= "<pre>" . error_reporting() . "</pre>";
      
     $headers = 'Content-type: text/html; charset=iso-8859-1';
     
     // The code below ensures that we only "die" if the error was more than
-    // just a NOTICE. 
+    // just a NOTICE.
     if ( ($number !== E_NOTICE) && ($number < 2048) ) {
-        // Email the error to me
-        error_log($email, 1, env( 'SUPPORT_MAIL' ), $headers);
-    	// Don't die ( errors shouldn't break the site in production )
-	    //die("There was an error. Please try again later.");
+	    
+	    // Check if error reporting isn't being silenced
+	    if ( error_reporting() != 0 ){
+	        // Email the error to me
+	        error_log($email, 1, env( 'SUPPORT_MAIL' ), $headers);
+	    }else {
+		    // silenced error
+	    }
+	    
     }
 }
 

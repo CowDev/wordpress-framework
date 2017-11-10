@@ -3,11 +3,13 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Theme includes
 require_once( 'inc/_auto-update.php' );
+require_once( 'inc/_wp-backend.php' );
+require_once( 'inc/_wp-posttypes.php' );
 require_once( 'inc/_wp-functions.php' );
 
 // Only require the robots check in production
 if( WP_ENV === 'production' ){
-    require_once( 'inc/_wp-check.php' );
+	require_once( 'inc/_wp-check.php' );
 }
 
 // Only require compiler in dev
